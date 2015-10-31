@@ -1,0 +1,3 @@
+[submodule "roles/smallk/files/www"]
+	path = roles/smallk/files/www
+	url = git@github.com:homedash/kankun-json.git
