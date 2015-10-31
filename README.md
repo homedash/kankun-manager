@@ -16,6 +16,7 @@ Bash and Ansible provisioning for Kankun Small K switches.
 _These scripts use the default Kankun Small K password unless changed._
 
 1. Install [Ansible](http://www.ansible.com/) on your local machine. (This can be done through a package manager too, if your system has one, such as [Homebrew](http://brew.sh/) for Mac.)
+2. Checkout this repository: `git clone git@github.com:homedash/kankun-manager.git --recursive`
 2. Edit the `hosts` file to refer to the IP addresses of your Kankun Small K switches and their password.
 3. Edit the `deploy.sh` file to use the password for your switches.
 
