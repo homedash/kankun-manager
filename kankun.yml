@@ -1,0 +1,9 @@
+---
+
+- name: Configure Kankun switches
+  hosts: switches
+  sudo: no
+  remote_user: root
+  gather_facts: false
+  roles:
+    - smallk

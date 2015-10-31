@@ -1,0 +1,44 @@
+---
+
+- name: Install opkg on switch
+  raw: tar xz -C / -f /root/opkg-rc3.tar.gz
+
+- name: Update opkg cache
+  raw: opkg update
+
+- name: Install required packages
+  raw: opkg install {{item}}
+  with_items: required_packages
+
+- name: Set timezone to {{timezone}}
+  raw: echo "{{timezone}}" > /etc/TZ
+
+- name: Create cgi-bin directory
+  raw: mkdir -p /www/cgi-bin/
+
+- name: Set permissions for web
+  raw: chmod -R 0755 /www/
+
+- name: Set permissions for Kankun-Broadcast script
+  raw: chmod 0755 /root/broadcast.sh
+
+- name: Clean up install packages
+  raw: rm /root/opkg-rc3.tar.gz
+
+- name: Setup cron
+  raw: mkdir -p /var/spool/cron
+
+- name: Start cron
+  raw: sh /etc/init.d/cron start
+
+- name: Enable cron
+  raw: sh /etc/init.d/cron enable
+
+- name: Add Kankun-Broadcast to cron
+  raw: crontab -l | { cat; echo "*/2 * * * * /root/broadcast.sh"; } | crontab -
+
+- name: Enable At
+  raw: sh /etc/init.d/atd enable
+
+- name: Start At
+  raw: sh /etc/rc.d/S50atd start

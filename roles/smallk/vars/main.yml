@@ -1,0 +1,9 @@
+---
+
+timezone: EDT-11
+
+required_packages:
+  - socat
+  - at
+
+udp_broadcast_port: 9600
